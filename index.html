@@ -1,538 +1,563 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physics Quiz - Quantum Theory & The Atom</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timer-container {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-
-        .timer {
-            font-size: 48px;
-            font-weight: bold;
-            color: #667eea;
-            font-family: 'Courier New', monospace;
-        }
-
-        .timer.warning {
-            color: #e74c3c;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .quiz-container {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .question-counter {
-            font-size: 18px;
-            color: #667eea;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .topic-badge {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .question {
-            font-size: 20px;
-            color: #2c3e50;
-            margin-bottom: 25px;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .option {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            padding: 15px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 16px;
-        }
-
-        .option:hover {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-            transform: translateX(5px);
-        }
-
-        .option.selected {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
-        .option.correct {
-            background: #27ae60;
-            color: white;
-            border-color: #27ae60;
-        }
-
-        .option.incorrect {
-            background: #e74c3c;
-            color: white;
-            border-color: #e74c3c;
-        }
-
-        .controls {
-            margin-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        button {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-
-        button:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        button:disabled {
-            background: #bdc3c7;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .results {
-            text-align: center;
-            display: none;
-        }
-
-        .score {
-            font-size: 48px;
-            color: #667eea;
-            margin: 20px 0;
-            font-weight: bold;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #ecf0f1;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #667eea;
-            transition: width 0.3s;
-        }
-
-        @media (max-width: 600px) {
-            .timer {
-                font-size: 36px;
-            }
-            .question {
-                font-size: 18px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade 12 Physics - Quantum Theory & The Atom Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .answer-box, #results-panel, #timer-container { display: none; }
+    .answers-visible .answer-box { display: block; }
+    .correct { background-color: #dcfce7 !important; border-color: #16a34a !important; }
+    .incorrect { background-color: #fee2e2 !important; border-color: #dc2626 !important; }
+    @media print {
+      .no-print { display: none !important; }
+      .shadow-lg, .shadow-md { box-shadow: none !important; }
+      body { background: white !important; color: black !important; }
+      .bg-gray-50, .bg-white, .bg-blue-50, .bg-green-50, #results-panel { background-color: white !important; }
+      input { border: 1px solid #ccc !important; background: transparent !important; }
+    }
+    .fade-in { animation: fadeIn 0.5s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .timer-warning { color: #dc2626 !important; animation: pulse 1s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <div class="timer-container">
-            <div class="timer" id="timer">30:00</div>
-        </div>
+<body class="bg-gray-50 text-gray-800 p-4 md:p-8 min-h-screen">
 
-        <div class="quiz-container" id="quiz">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressBar" style="width: 0%"></div>
-            </div>
-            <div class="question-counter" id="questionCounter">Question 1 of 16</div>
-            <div class="topic-badge" id="topicBadge">Topic</div>
-            <div class="question" id="question"></div>
-            <div class="options" id="options"></div>
-            <div class="controls">
-                <button id="prevBtn" onclick="previousQuestion()" disabled>Previous</button>
-                <button id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
-            </div>
-        </div>
+  <!-- Timer -->
+  <div id="timer-container" class="max-w-4xl mx-auto mb-4 text-center no-print">
+    <div class="bg-white p-4 rounded-xl shadow-md inline-block">
+      <span class="text-gray-600 mr-2">⏱️ Time Remaining:</span>
+      <span id="timer" class="text-2xl font-bold text-indigo-600 font-mono">30:00</span>
+    </div>
+  </div>
 
-        <div class="quiz-container results" id="results">
-            <h2>Quiz Completed!</h2>
-            <div class="score" id="score"></div>
-            <p id="resultMessage"></p>
-            <button onclick="restartQuiz()" style="margin-top: 20px;">Restart Quiz</button>
-        </div>
+  <!-- Controls -->
+  <div class="max-w-4xl mx-auto mb-6 flex flex-wrap gap-3 justify-center no-print">
+    <button onclick="toggleAnswers()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer">
+      👁️ Show / Hide Model Answers
+    </button>
+    <button onclick="window.print()" class="bg-gray-800 hover:bg-gray-900 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer">
+      🖨️ Print / Save as PDF
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md mb-8 border-l-4 border-indigo-600">
+    <div class="text-center">
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">⚛️ Grade 12 Physics Exam</h1>
+      <h2 class="text-lg text-indigo-600 font-semibold">Chapter 3: Quantum Theory & The Atom</h2>
+    </div>
+    <div class="mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+      <span>📅 Date: <input type="text" class="border-b border-gray-400 bg-transparent w-28 text-center"></span>
+      <span>👤 Name: <input type="text" id="studentName" class="border-b border-gray-400 bg-transparent w-32 text-center" placeholder="Enter Name"></span>
+      <span>⏱️ Duration: 30 min</span>
+      <span>📊 Total: 100 Marks</span>
+    </div>
+    <p class="mt-2 text-xs text-center text-gray-500">💡 Note: All questions are multiple-choice. Select the best answer.</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto space-y-8" id="exam-content">
+
+    <!-- Topic 1: Particle Model of Waves -->
+    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="particle-waves">
+      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 1: Particle Model of Waves</h2>
+      <ol class="space-y-4 text-sm">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>1.</strong> What is the photoelectric effect?<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="a" class="mr-2"> a) Emission of electrons when light hits a material</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="b" class="mr-2"> b) Absorption of photons by atoms</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="c" class="mr-2"> c) Scattering of light by particles</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="d" class="mr-2"> d) Diffraction of light through a slit</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>2.</strong> According to Planck's quantum theory, energy is:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="a" class="mr-2"> a) Continuous</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="b" class="mr-2"> b) Quantized in discrete packets (quanta)</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="c" class="mr-2"> c) Infinite</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="d" class="mr-2"> d) Always constant</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>3.</strong> The energy of a photon is given by:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="a" class="mr-2"> a) E = mc²</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="b" class="mr-2"> b) E = hf</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="c" class="mr-2"> c) E = ½mv²</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="d" class="mr-2"> d) E = kx</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>4.</strong> In the Compton effect, the wavelength of scattered X-rays:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="a" class="mr-2"> a) Decreases</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="b" class="mr-2"> b) Remains unchanged</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="c" class="mr-2"> c) Increases</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="d" class="mr-2"> d) Becomes zero</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: c)</div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Topic 2: Matter Waves -->
+    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="matter-waves">
+      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 2: Matter Waves</h2>
+      <ol class="space-y-4 text-sm">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>5.</strong> Who proposed that particles have wave properties?<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="a" class="mr-2"> a) Einstein</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="b" class="mr-2"> b) Planck</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="c" class="mr-2"> c) de Broglie</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="d" class="mr-2"> d) Bohr</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: c)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>6.</strong> The de Broglie wavelength is given by:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="a" class="mr-2"> a) λ = h/mv</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="b" class="mr-2"> b) λ = mv/h</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="c" class="mr-2"> c) λ = hf</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="d" class="mr-2"> d) λ = c/f</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>7.</strong> The Heisenberg uncertainty principle states that:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="a" class="mr-2"> a) Energy and time cannot be measured precisely together</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="b" class="mr-2"> b) Position and momentum cannot be measured precisely together</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="c" class="mr-2"> c) Mass and velocity are always uncertain</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="d" class="mr-2"> d) Charge and spin are quantized</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>8.</strong> Why don't macroscopic objects show observable wave behavior?<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="a" class="mr-2"> a) They have no mass</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="b" class="mr-2"> b) Their de Broglie wavelengths are extremely small</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="c" class="mr-2"> c) They move too slowly</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="d" class="mr-2"> d) They are not charged</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Topic 3: Rutherford & Bohr Models -->
+    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="atomic-models">
+      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 3: Rutherford & Bohr Models</h2>
+      <ol class="space-y-4 text-sm">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>9.</strong> In Rutherford's gold foil experiment, most alpha particles:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="a" class="mr-2"> a) Were deflected at large angles</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="b" class="mr-2"> b) Passed through undeflected</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="c" class="mr-2"> c) Were absorbed by the foil</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="d" class="mr-2"> d) Bounced straight back</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>10.</strong> According to Bohr's model, electrons orbit in:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="a" class="mr-2"> a) Random paths</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="b" class="mr-2"> b) Quantized energy levels (stationary orbits)</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="c" class="mr-2"> c) Spiral paths toward the nucleus</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="d" class="mr-2"> d) Elliptical orbits only</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>11.</strong> The energy of a hydrogen atom in level n is:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="a" class="mr-2"> a) E = -13.6 eV × n</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="b" class="mr-2"> b) E = -13.6 eV / n</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="c" class="mr-2"> c) E = -13.6 eV / n²</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="d" class="mr-2"> d) E = -13.6 eV × n²</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: c)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>12.</strong> When an electron drops from a higher to lower energy level, it:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="a" class="mr-2"> a) Absorbs a photon</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="b" class="mr-2"> b) Emits a photon</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="c" class="mr-2"> c) Gains kinetic energy</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="d" class="mr-2"> d) Loses mass</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Topic 4: Atomic Spectra -->
+    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="spectra">
+      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 4: Atomic Spectra</h2>
+      <ol class="space-y-4 text-sm">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>13.</strong> The Balmer series corresponds to electron transitions to level:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="a" class="mr-2"> a) n = 1</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="b" class="mr-2"> b) n = 2</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="c" class="mr-2"> c) n = 3</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="d" class="mr-2"> d) n = 4</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>14.</strong> The wavelength of emitted light during a transition is given by:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="a" class="mr-2"> a) λ = hc/ΔE</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="b" class="mr-2"> b) λ = h/ΔE</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="c" class="mr-2"> c) λ = c/ΔE</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="d" class="mr-2"> d) λ = ΔE/hc</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>15.</strong> Which series lies in the ultraviolet region?<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="a" class="mr-2"> a) Lyman series</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="b" class="mr-2"> b) Balmer series</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="c" class="mr-2"> c) Paschen series</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="d" class="mr-2"> d) Brackett series</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>16.</strong> A photon with energy 10.2 eV can cause a transition in hydrogen from:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="a" class="mr-2"> a) n=1 to n=2</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="b" class="mr-2"> b) n=2 to n=3</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="c" class="mr-2"> c) n=3 to n=4</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="d" class="mr-2"> d) n=1 to n=3</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Topic 5: Quantum Model of the Atom -->
+    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="quantum-model">
+      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 5: Quantum Model of the Atom</h2>
+      <ol class="space-y-4 text-sm">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>17.</strong> In the quantum model, the electron cloud represents:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="a" class="mr-2"> a) The exact path of the electron</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="b" class="mr-2"> b) The probability of finding an electron</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="c" class="mr-2"> c) The nucleus of the atom</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="d" class="mr-2"> d) Only energy levels</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>18.</strong> The principal quantum number (n) determines:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="a" class="mr-2"> a) The shape of the orbital</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="b" class="mr-2"> b) The energy level and size of the orbital</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="c" class="mr-2"> c) The orientation of the orbital</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="d" class="mr-2"> d) The spin of the electron</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>19.</strong> The Pauli exclusion principle states that:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="a" class="mr-2"> a) Electrons fill lowest energy first</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="b" class="mr-2"> b) No two electrons can have the same four quantum numbers</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="c" class="mr-2"> c) Electrons pair with opposite spins</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="d" class="mr-2"> d) Orbitals fill singly first</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>20.</strong> Which orbital has a dumbbell shape?<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="a" class="mr-2"> a) s orbital</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="b" class="mr-2"> b) p orbital</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="c" class="mr-2"> c) d orbital</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="d" class="mr-2"> d) f orbital</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Topic 6: Lasers -->
+    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="lasers">
+      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 6: Lasers</h2>
+      <ol class="space-y-4 text-sm">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>21.</strong> Laser light is characterized by being:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="a" class="mr-2"> a) Incoherent and multi-directional</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="b" class="mr-2"> b) Coherent, monochromatic, and directional</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="c" class="mr-2"> c) Random and scattered</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="d" class="mr-2"> d) Low intensity only</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>22.</strong> Stimulated emission occurs when:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="a" class="mr-2"> a) An atom spontaneously emits a photon</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="b" class="mr-2"> b) An excited atom is struck by a photon of matching energy</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="c" class="mr-2"> c) An electron absorbs energy</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="d" class="mr-2"> d) Two atoms collide</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>23.</strong> Population inversion is necessary for laser operation because:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="a" class="mr-2"> a) It prevents absorption</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="b" class="mr-2"> b) It ensures more atoms are excited than in ground state</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="c" class="mr-2"> c) It increases the speed of light</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="d" class="mr-2"> d) It reduces energy loss</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>24.</strong> The ground state of an atom is:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="a" class="mr-2"> a) The highest energy level</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="b" class="mr-2"> b) The lowest energy level</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="c" class="mr-2"> c) An excited state</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="d" class="mr-2"> d) An ionized state</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Topic 7: Applications & Calculations -->
+    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="applications">
+      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 7: Applications & Calculations</h2>
+      <ol class="space-y-4 text-sm">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>25.</strong> Calculate the energy of a photon with frequency 5.0×10¹⁴ Hz. (h = 6.63×10⁻³⁴ J·s)<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="a" class="mr-2"> a) 3.3×10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="b" class="mr-2"> b) 6.6×10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="c" class="mr-2"> c) 1.3×10⁻¹⁸ J</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="d" class="mr-2"> d) 2.5×10⁻¹⁹ J</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a) E = hf = 3.3×10⁻¹⁹ J</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>26.</strong> What is the de Broglie wavelength of an electron (m=9.11×10⁻³¹ kg) moving at 2.0×10⁶ m/s?<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="a" class="mr-2"> a) 3.6×10⁻¹⁰ m</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="b" class="mr-2"> b) 7.3×10⁻¹⁰ m</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="c" class="mr-2"> c) 1.8×10⁻¹⁰ m</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="d" class="mr-2"> d) 5.5×10⁻¹⁰ m</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a) λ = h/mv ≈ 3.6×10⁻¹⁰ m</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>27.</strong> A hydrogen atom transitions from n=3 to n=1. The energy of the emitted photon is:<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="a" class="mr-2"> a) 1.5 eV</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="b" class="mr-2"> b) 10.2 eV</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="c" class="mr-2"> c) 12.1 eV</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="d" class="mr-2"> d) 13.6 eV</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: c) ΔE = 13.6(1/1² - 1/3²) = 12.1 eV</div>
+        </li>
+        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+          <strong>28.</strong> Which application uses the photoelectric effect?<br>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="a" class="mr-2"> a) Solar panels</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="b" class="mr-2"> b) Fiber optics</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="c" class="mr-2"> c) MRI machines</label>
+          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="d" class="mr-2"> d) Ultrasound imaging</label>
+          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a) Solar panels</div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Submit & Email Buttons -->
+    <div class="text-center no-print pb-8">
+      <button onclick="gradeExam()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg px-10 py-4 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer">
+        📝 Submit & Auto-Grade Exam
+      </button>
+      <p class="text-xs text-gray-500 mt-3">Results appear instantly with detailed feedback.</p>
+      
+      <button id="sendEmailBtn" onclick="sendResultsToEmail()" class="mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-lg px-10 py-4 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer hidden">
+        📧 Send Results to Teacher
+      </button>
+      <p id="emailStatus" class="text-sm mt-2 text-center font-medium"></p>
     </div>
 
-    <script>
-        const quizData = [
-            // Topic 1: Particle Model of Waves
-            {
-                topic: "Particle Model of Waves",
-                question: "What is the photoelectric effect?",
-                options: [
-                    "The emission of electrons when electromagnetic radiation falls on an object",
-                    "The absorption of photons by atoms",
-                    "The scattering of light by particles",
-                    "The diffraction of light through a slit"
-                ],
-                correct: 0
-            },
-            {
-                topic: "Particle Model of Waves",
-                question: "According to Planck's quantum theory, energy is:",
-                options: [
-                    "Continuous",
-                    "Quantized in discrete packets",
-                    "Infinite",
-                    "Variable"
-                ],
-                correct: 1
-            },
-            {
-                topic: "Particle Model of Waves",
-                question: "The energy of a photon is given by which equation?",
-                options: [
-                    "E = mc²",
-                    "E = hf",
-                    "E = mv²/2",
-                    "E = kx"
-                ],
-                correct: 1
-            },
-            {
-                topic: "Particle Model of Waves",
-                question: "In the Compton effect, what happens to the wavelength of scattered X-rays?",
-                options: [
-                    "It decreases",
-                    "It remains the same",
-                    "It increases",
-                    "It becomes zero"
-                ],
-                correct: 2
-            },
-            // Topic 2: Matter Waves
-            {
-                topic: "Matter Waves",
-                question: "Who proposed that particles have wave properties?",
-                options: [
-                    "Einstein",
-                    "Planck",
-                    "de Broglie",
-                    "Bohr"
-                ],
-                correct: 2
-            },
-            {
-                topic: "Matter Waves",
-                question: "The de Broglie wavelength is given by:",
-                options: [
-                    "λ = h/mv",
-                    "λ = mv/h",
-                    "λ = h/f",
-                    "λ = c/f"
-                ],
-                correct: 0
-            },
-            {
-                topic: "Matter Waves",
-                question: "The Heisenberg uncertainty principle states that:",
-                options: [
-                    "Energy and time cannot be measured simultaneously",
-                    "Position and momentum cannot be precisely measured simultaneously",
-                    "Mass and velocity cannot be measured simultaneously",
-                    "Charge and spin cannot be measured simultaneously"
-                ],
-                correct: 1
-            },
-            {
-                topic: "Matter Waves",
-                question: "Why don't everyday objects exhibit observable wave behavior?",
-                options: [
-                    "They have no mass",
-                    "Their wavelengths are too small to observe",
-                    "They move too slowly",
-                    "They are not charged"
-                ],
-                correct: 1
-            },
-            // Topic 3: Bohr's Model of the Atom
-            {
-                topic: "Bohr's Model",
-                question: "In Rutherford's gold foil experiment, most alpha particles:",
-                options: [
-                    "Were deflected at large angles",
-                    "Passed through undeflected",
-                    "Were absorbed by the foil",
-                    "Bounced back"
-                ],
-                correct: 1
-            },
-            {
-                topic: "Bohr's Model",
-                question: "According to Bohr's model, electrons orbit the nucleus in:",
-                options: [
-                    "Random paths",
-                    "Quantized energy levels",
-                    "Spiral paths",
-                    "Elliptical orbits only"
-                ],
-                correct: 1
-            },
-            {
-                topic: "Bohr's Model",
-                question: "The energy of a hydrogen atom in level n is:",
-                options: [
-                    "E = -13.6 eV × n",
-                    "E = -13.6 eV / n",
-                    "E = -13.6 eV / n²",
-                    "E = -13.6 eV × n²"
-                ],
-                correct: 2
-            },
-            {
-                topic: "Bohr's Model",
-                question: "When an electron transitions from a higher to lower energy level, it:",
-                options: [
-                    "Absorbs a photon",
-                    "Emits a photon",
-                    "Gains kinetic energy",
-                    "Loses mass"
-                ],
-                correct: 1
-            },
-            // Topic 4: Quantum Model of the Atom
-            {
-                topic: "Quantum Model",
-                question: "In the quantum model, the electron cloud represents:",
-                options: [
-                    "The exact path of the electron",
-                    "The probability of finding an electron",
-                    "The nucleus of the atom",
-                    "The energy levels only"
-                ],
-                correct: 1
-            },
-            {
-                topic: "Quantum Model",
-                question: "Laser light is characterized by being:",
-                options: [
-                    "Incoherent and multi-directional",
-                    "Coherent, monochromatic, and directional",
-                    "Random and scattered",
-                    "Low intensity only"
-                ],
-                correct: 1
-            },
-            {
-                topic: "Quantum Model",
-                question: "Stimulated emission occurs when:",
-                options: [
-                    "An atom spontaneously emits a photon",
-                    "An excited atom is struck by a photon of the right energy",
-                    "An electron absorbs energy",
-                    "Two atoms collide"
-                ],
-                correct: 1
-            },
-            {
-                topic: "Quantum Model",
-                question: "The ground state of an atom is:",
-                options: [
-                    "The highest energy level",
-                    "The lowest energy level",
-                    "An excited state",
-                    "An ionized state"
-                ],
-                correct: 1
-            }
-        ];
+  </main>
 
-        let currentQuestion = 0;
-        let answers = [];
-        let shuffledQuestions = [];
-        let timeRemaining = 1800; // 30 minutes in seconds
-        let timerInterval;
+  <!-- Results Panel -->
+  <div id="results-panel" class="max-w-4xl mx-auto mt-8 bg-white p-8 rounded-2xl shadow-2xl border-t-4 border-emerald-500 fade-in no-print">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">📊 Exam Results</h2>
+    
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl text-center">
+        <p class="text-sm text-gray-600">Student Name</p>
+        <p id="res-name" class="font-bold text-xl text-indigo-700">-</p>
+      </div>
+      <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-xl text-center">
+        <p class="text-sm text-gray-600">Date</p>
+        <p id="res-date" class="font-bold text-xl text-purple-700">-</p>
+      </div>
+      <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-4 rounded-xl text-center">
+        <p class="text-sm text-gray-600">Total Score</p>
+        <p id="res-total" class="font-bold text-3xl text-emerald-600">0 / 100</p>
+      </div>
+    </div>
 
-        function shuffleArray(array) {
-            const newArray = [...array];
-            for (let i = newArray.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-            }
-            return newArray;
+    <div class="bg-gray-50 p-6 rounded-xl mb-6">
+      <h3 class="font-bold text-lg mb-4">Score Breakdown by Topic:</h3>
+      <div id="breakdown" class="space-y-2"></div>
+    </div>
+
+    <div class="bg-blue-50 p-4 rounded-xl text-sm text-blue-800 mb-6">
+      <strong>📌 Note:</strong> All questions are multiple-choice. Correct answers highlighted in green, incorrect in red. Review your selections before printing.
+    </div>
+
+    <div class="flex gap-3 justify-center">
+      <button onclick="window.print()" class="bg-gray-700 hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer transition">
+        🖨️ Print Results
+      </button>
+    </div>
+  </div>
+
+  <footer class="max-w-4xl mx-auto mt-10 mb-8 text-center text-gray-500 text-sm no-print">
+    © Grade 12 Physics Exam | Quantum Theory & The Atom | Auto-Grading System | Mr. Mohammed Hesham
+  </footer>
+
+  <script>
+    // ============================================================
+    // ⚠️ STEP 1: REPLACE WITH YOUR EMAILJS CREDENTIALS
+    // ============================================================
+    const PUBLIC_KEY = "Rb3Lq8tXaFmc5YHUH";
+    const SERVICE_ID = "service_w15m64i";
+    const TEMPLATE_ID = "template_5b0u2tq";
+    const TARGET_EMAIL = "mohammedhesham872@gmail.com";
+    // ============================================================
+
+    (function(){ emailjs.init(PUBLIC_KEY); })();
+
+    // Timer functionality
+    let timeRemaining = 1800; // 30 minutes in seconds
+    let timerInterval;
+
+    function startTimer() {
+      document.getElementById('timer-container').style.display = 'block';
+      timerInterval = setInterval(() => {
+        timeRemaining--;
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        const timerEl = document.getElementById('timer');
+        timerEl.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        
+        if (timeRemaining <= 300) {
+          timerEl.classList.add('timer-warning');
         }
-
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                timeRemaining--;
-                const minutes = Math.floor(timeRemaining / 60);
-                const seconds = timeRemaining % 60;
-                document.getElementById('timer').textContent = 
-                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                
-                if (timeRemaining <= 300) {
-                    document.getElementById('timer').classList.add('warning');
-                }
-                
-                if (timeRemaining <= 0) {
-                    clearInterval(timerInterval);
-                    showResults();
-                }
-            }, 1000);
+        
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          gradeExam();
         }
+      }, 1000);
+    }
 
-        function initQuiz() {
-            shuffledQuestions = shuffleArray(quizData);
-            answers = new Array(shuffledQuestions.length).fill(null);
-            currentQuestion = 0;
-            timeRemaining = 1800;
-            document.getElementById('timer').classList.remove('warning');
-            displayQuestion();
-            startTimer();
+    function toggleAnswers() {
+      document.body.classList.toggle('answers-visible');
+    }
+
+    // Fisher-Yates shuffle for random ordering
+    function shuffleArray(array) {
+      const newArray = [...array];
+      for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      }
+      return newArray;
+    }
+
+    // Shuffle questions within each topic section on page load
+    function shuffleQuestions() {
+      const sections = document.querySelectorAll('main section ol');
+      sections.forEach(ol => {
+        const items = Array.from(ol.children);
+        const shuffled = shuffleArray(items);
+        shuffled.forEach(item => ol.appendChild(item));
+      });
+    }
+
+    function gradeExam() {
+      clearInterval(timerInterval);
+      const name = document.getElementById('studentName').value || 'Student';
+      const date = document.querySelector('input[type="text"]').value || new Date().toLocaleDateString();
+      let total = 0;
+      const breakdown = [];
+
+      // Correct answers for 28 questions
+      const correctAnswers = [
+        'a','b','b','c', // Topic 1
+        'c','a','b','b', // Topic 2
+        'b','b','c','b', // Topic 3
+        'b','a','a','a', // Topic 4
+        'b','b','b','b', // Topic 5
+        'b','b','b','b', // Topic 6
+        'a','a','c','a'  // Topic 7
+      ];
+
+      let topicScores = [0,0,0,0,0,0,0];
+      const topicNames = [
+        "Particle Model of Waves",
+        "Matter Waves", 
+        "Rutherford & Bohr Models",
+        "Atomic Spectra",
+        "Quantum Model of the Atom",
+        "Lasers",
+        "Applications & Calculations"
+      ];
+
+      for(let i=1; i<=28; i++){
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const match = selected && selected.value === correctAnswers[i-1];
+        if(match) {
+          total += 3.57; // 100/28 ≈ 3.57 per question
+          topicScores[Math.floor((i-1)/4)] += 3.57;
         }
+        const parent = document.querySelector(`input[name="q${i}"]`).closest('li');
+        parent.classList.add(match ? 'correct' : 'incorrect');
+      }
 
-        function displayQuestion() {
-            const q = shuffledQuestions[currentQuestion];
-            document.getElementById('questionCounter').textContent = 
-                `Question ${currentQuestion + 1} of ${shuffledQuestions.length}`;
-            document.getElementById('topicBadge').textContent = q.topic;
-            document.getElementById('question').textContent = q.question;
-            
-            const optionsDiv = document.getElementById('options');
-            optionsDiv.innerHTML = '';
-            
-            const shuffledOptions = q.options.map((opt, idx) => ({ text: opt, originalIdx: idx }))
-                .sort(() => Math.random() - 0.5);
-            
-            shuffledOptions.forEach(({ text, originalIdx }) => {
-                const btn = document.createElement('div');
-                btn.className = 'option';
-                btn.textContent = text;
-                btn.onclick = () => selectOption(originalIdx, btn);
-                
-                if (answers[currentQuestion] === originalIdx) {
-                    btn.classList.add('selected');
-                }
-                
-                optionsDiv.appendChild(btn);
-            });
-            
-            document.getElementById('prevBtn').disabled = currentQuestion === 0;
-            document.getElementById('nextBtn').disabled = answers[currentQuestion] === null;
-            document.getElementById('progressBar').style.width = 
-                `${((currentQuestion + 1) / shuffledQuestions.length) * 100}%`;
-        }
+      total = Math.round(total);
+      topicScores.forEach((score, idx) => {
+        breakdown.push(`<div class="flex justify-between p-2 bg-white rounded"><span>${topicNames[idx]}</span><span class="font-bold text-indigo-700">${Math.round(score)}/14</span></div>`);
+      });
 
-        function selectOption(idx, btn) {
-            answers[currentQuestion] = idx;
-            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-            btn.classList.add('selected');
-            document.getElementById('nextBtn').disabled = false;
-        }
+      document.getElementById('res-name').textContent = name;
+      document.getElementById('res-date').textContent = date;
+      document.getElementById('res-total').textContent = `${total} / 100`;
+      document.getElementById('breakdown').innerHTML = breakdown.join('');
+      
+      const panel = document.getElementById('results-panel');
+      panel.style.display = 'block';
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      document.getElementById('sendEmailBtn').classList.remove('hidden');
+    }
 
-        function nextQuestion() {
-            if (currentQuestion < shuffledQuestions.length - 1) {
-                currentQuestion++;
-                displayQuestion();
-            } else {
-                showResults();
-            }
-        }
+    function sendResultsToEmail() {
+      const btn = document.getElementById('sendEmailBtn');
+      const status = document.getElementById('emailStatus');
+      btn.disabled = true;
+      btn.textContent = '⏳ Sending...';
 
-        function previousQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                displayQuestion();
-            }
-        }
+      const name = document.getElementById('studentName').value || 'N/A';
+      const date = document.querySelector('input[type="text"]').value || new Date().toLocaleDateString();
+      const score = document.getElementById('res-total').textContent;
 
-        function showResults() {
-            clearInterval(timerInterval);
-            document.getElementById('quiz').style.display = 'none';
-            document.getElementById('results').style.display = 'block';
-            document.querySelector('.timer-container').style.display = 'none';
-            
-            let correct = 0;
-            answers.forEach((ans, idx) => {
-                if (ans === shuffledQuestions[idx].correct) correct++;
-            });
-            
-            const percentage = (correct / shuffledQuestions.length) * 100;
-            document.getElementById('score').textContent = 
-                `${correct}/${shuffledQuestions.length} (${percentage.toFixed(1)}%)`;
-            
-            let msg = '';
-            if (percentage >= 90) msg = 'Excellent! Outstanding performance! 🌟';
-            else if (percentage >= 75) msg = 'Great job! Well done! 👍';
-            else if (percentage >= 60) msg = 'Good effort! Keep studying! 📚';
-            else msg = 'Keep practicing! You can do better! 💪';
-            
-            document.getElementById('resultMessage').textContent = msg;
-        }
+      let answersHTML = `<table style="border:1px solid #e5e7eb; border-collapse:collapse; width:100%; font-family:Arial; font-size:12px;">
+        <tr style="background:#4F46E5; color:white;"><th style="border:1px solid #e5e7eb; padding:8px;">Q#</th><th style="border:1px solid #e5e7eb; padding:8px;">Topic</th><th style="border:1px solid #e5e7eb; padding:8px;">Selected</th><th style="border:1px solid #e5e7eb; padding:8px;">Status</th></tr>`;
+      
+      const correctAnswers = ['a','b','b','c','c','a','b','b','b','b','c','b','b','a','a','a','b','b','b','b','b','b','b','b','a','a','c','a'];
+      const topics = ["Waves","Waves","Waves","Waves","Matter","Matter","Matter","Matter","Models","Models","Models","Models","Spectra","Spectra","Spectra","Spectra","Quantum","Quantum","Quantum","Quantum","Lasers","Lasers","Lasers","Lasers","Calc","Calc","Calc","Calc"];
+      
+      for(let i=1; i<=28; i++) {
+        const sel = document.querySelector(`input[name="q${i}"]:checked`);
+        const isCorrect = sel && sel.value === correctAnswers[i-1];
+        answersHTML += `<tr><td style="border:1px solid #e5e7eb; padding:6px;">${i}</td><td style="border:1px solid #e5e7eb; padding:6px;">${topics[i-1]}</td><td style="border:1px solid #e5e7eb; padding:6px;">${sel ? sel.value.toUpperCase() : '-'}</td><td style="border:1px solid #e5e7eb; padding:6px; color:${isCorrect ? 'green' : 'red'}">${isCorrect ? '✅' : '❌'}</td></tr>`;
+      }
+      answersHTML += '</table>';
 
-        function restartQuiz() {
-            document.getElementById('quiz').style.display = 'block';
-            document.getElementById('results').style.display = 'none';
-            document.querySelector('.timer-container').style.display = 'block';
-            initQuiz();
-        }
+      const templateParams = {
+        to_email: TARGET_EMAIL,
+        student_name: name,
+        exam_date: date,
+        total_score: score,
+        answers_table: answersHTML
+      };
 
-        window.onload = initQuiz;
-    </script>
+      emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+        .then(() => {
+          status.textContent = '✅ Sent successfully! Check your Gmail.';
+          status.style.color = '#059669';
+          btn.textContent = '✓ Sent';
+        })
+        .catch(err => {
+          status.textContent = '❌ Failed. Check console or setup.';
+          status.style.color = '#dc2626';
+          btn.disabled = false;
+          btn.textContent = '📧 Retry Send';
+          console.error('EmailJS Error:', err);
+        });
+    }
+
+    // Initialize: shuffle questions and start timer on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      shuffleQuestions();
+      startTimer();
+    });
+  </script>
 </body>
 </html>
