@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Quiz - Quantum Theory & The Atom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timer-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .timer {
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+            font-family: 'Courier New', monospace;
+        }
+
+        .timer.warning {
+            color: #e74c3c;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .question-counter {
+            font-size: 18px;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .topic-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .option:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .option.correct {
+            background: #27ae60;
+            color: white;
+            border-color: #27ae60;
+        }
+
+        .option.incorrect {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            text-align: center;
+            display: none;
+        }
+
+        .score {
+            font-size: 48px;
+            color: #667eea;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #667eea;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .timer {
+                font-size: 36px;
+            }
+            .question {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="timer-container">
+            <div class="timer" id="timer">30:00</div>
+        </div>
+
+        <div class="quiz-container" id="quiz">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+            </div>
+            <div class="question-counter" id="questionCounter">Question 1 of 16</div>
+            <div class="topic-badge" id="topicBadge">Topic</div>
+            <div class="question" id="question"></div>
+            <div class="options" id="options"></div>
+            <div class="controls">
+                <button id="prevBtn" onclick="previousQuestion()" disabled>Previous</button>
+                <button id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
+            </div>
+        </div>
+
+        <div class="quiz-container results" id="results">
+            <h2>Quiz Completed!</h2>
+            <div class="score" id="score"></div>
+            <p id="resultMessage"></p>
+            <button onclick="restartQuiz()" style="margin-top: 20px;">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            // Topic 1: Particle Model of Waves
+            {
+                topic: "Particle Model of Waves",
+                question: "What is the photoelectric effect?",
+                options: [
+                    "The emission of electrons when electromagnetic radiation falls on an object",
+                    "The absorption of photons by atoms",
+                    "The scattering of light by particles",
+                    "The diffraction of light through a slit"
+                ],
+                correct: 0
+            },
+            {
+                topic: "Particle Model of Waves",
+                question: "According to Planck's quantum theory, energy is:",
+                options: [
+                    "Continuous",
+                    "Quantized in discrete packets",
+                    "Infinite",
+                    "Variable"
+                ],
+                correct: 1
+            },
+            {
+                topic: "Particle Model of Waves",
+                question: "The energy of a photon is given by which equation?",
+                options: [
+                    "E = mc²",
+                    "E = hf",
+                    "E = mv²/2",
+                    "E = kx"
+                ],
+                correct: 1
+            },
+            {
+                topic: "Particle Model of Waves",
+                question: "In the Compton effect, what happens to the wavelength of scattered X-rays?",
+                options: [
+                    "It decreases",
+                    "It remains the same",
+                    "It increases",
+                    "It becomes zero"
+                ],
+                correct: 2
+            },
+            // Topic 2: Matter Waves
+            {
+                topic: "Matter Waves",
+                question: "Who proposed that particles have wave properties?",
+                options: [
+                    "Einstein",
+                    "Planck",
+                    "de Broglie",
+                    "Bohr"
+                ],
+                correct: 2
+            },
+            {
+                topic: "Matter Waves",
+                question: "The de Broglie wavelength is given by:",
+                options: [
+                    "λ = h/mv",
+                    "λ = mv/h",
+                    "λ = h/f",
+                    "λ = c/f"
+                ],
+                correct: 0
+            },
+            {
+                topic: "Matter Waves",
+                question: "The Heisenberg uncertainty principle states that:",
+                options: [
+                    "Energy and time cannot be measured simultaneously",
+                    "Position and momentum cannot be precisely measured simultaneously",
+                    "Mass and velocity cannot be measured simultaneously",
+                    "Charge and spin cannot be measured simultaneously"
+                ],
+                correct: 1
+            },
+            {
+                topic: "Matter Waves",
+                question: "Why don't everyday objects exhibit observable wave behavior?",
+                options: [
+                    "They have no mass",
+                    "Their wavelengths are too small to observe",
+                    "They move too slowly",
+                    "They are not charged"
+                ],
+                correct: 1
+            },
+            // Topic 3: Bohr's Model of the Atom
+            {
+                topic: "Bohr's Model",
+                question: "In Rutherford's gold foil experiment, most alpha particles:",
+                options: [
+                    "Were deflected at large angles",
+                    "Passed through undeflected",
+                    "Were absorbed by the foil",
+                    "Bounced back"
+                ],
+                correct: 1
+            },
+            {
+                topic: "Bohr's Model",
+                question: "According to Bohr's model, electrons orbit the nucleus in:",
+                options: [
+                    "Random paths",
+                    "Quantized energy levels",
+                    "Spiral paths",
+                    "Elliptical orbits only"
+                ],
+                correct: 1
+            },
+            {
+                topic: "Bohr's Model",
+                question: "The energy of a hydrogen atom in level n is:",
+                options: [
+                    "E = -13.6 eV × n",
+                    "E = -13.6 eV / n",
+                    "E = -13.6 eV / n²",
+                    "E = -13.6 eV × n²"
+                ],
+                correct: 2
+            },
+            {
+                topic: "Bohr's Model",
+                question: "When an electron transitions from a higher to lower energy level, it:",
+                options: [
+                    "Absorbs a photon",
+                    "Emits a photon",
+                    "Gains kinetic energy",
+                    "Loses mass"
+                ],
+                correct: 1
+            },
+            // Topic 4: Quantum Model of the Atom
+            {
+                topic: "Quantum Model",
+                question: "In the quantum model, the electron cloud represents:",
+                options: [
+                    "The exact path of the electron",
+                    "The probability of finding an electron",
+                    "The nucleus of the atom",
+                    "The energy levels only"
+                ],
+                correct: 1
+            },
+            {
+                topic: "Quantum Model",
+                question: "Laser light is characterized by being:",
+                options: [
+                    "Incoherent and multi-directional",
+                    "Coherent, monochromatic, and directional",
+                    "Random and scattered",
+                    "Low intensity only"
+                ],
+                correct: 1
+            },
+            {
+                topic: "Quantum Model",
+                question: "Stimulated emission occurs when:",
+                options: [
+                    "An atom spontaneously emits a photon",
+                    "An excited atom is struck by a photon of the right energy",
+                    "An electron absorbs energy",
+                    "Two atoms collide"
+                ],
+                correct: 1
+            },
+            {
+                topic: "Quantum Model",
+                question: "The ground state of an atom is:",
+                options: [
+                    "The highest energy level",
+                    "The lowest energy level",
+                    "An excited state",
+                    "An ionized state"
+                ],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = [];
+        let shuffledQuestions = [];
+        let timeRemaining = 1800; // 30 minutes in seconds
+        let timerInterval;
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeRemaining <= 300) {
+                    document.getElementById('timer').classList.add('warning');
+                }
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    showResults();
+                }
+            }, 1000);
+        }
+
+        function initQuiz() {
+            shuffledQuestions = shuffleArray(quizData);
+            answers = new Array(shuffledQuestions.length).fill(null);
+            currentQuestion = 0;
+            timeRemaining = 1800;
+            document.getElementById('timer').classList.remove('warning');
+            displayQuestion();
+            startTimer();
+        }
+
+        function displayQuestion() {
+            const q = shuffledQuestions[currentQuestion];
+            document.getElementById('questionCounter').textContent = 
+                `Question ${currentQuestion + 1} of ${shuffledQuestions.length}`;
+            document.getElementById('topicBadge').textContent = q.topic;
+            document.getElementById('question').textContent = q.question;
+            
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.innerHTML = '';
+            
+            const shuffledOptions = q.options.map((opt, idx) => ({ text: opt, originalIdx: idx }))
+                .sort(() => Math.random() - 0.5);
+            
+            shuffledOptions.forEach(({ text, originalIdx }) => {
+                const btn = document.createElement('div');
+                btn.className = 'option';
+                btn.textContent = text;
+                btn.onclick = () => selectOption(originalIdx, btn);
+                
+                if (answers[currentQuestion] === originalIdx) {
+                    btn.classList.add('selected');
+                }
+                
+                optionsDiv.appendChild(btn);
+            });
+            
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').disabled = answers[currentQuestion] === null;
+            document.getElementById('progressBar').style.width = 
+                `${((currentQuestion + 1) / shuffledQuestions.length) * 100}%`;
+        }
+
+        function selectOption(idx, btn) {
+            answers[currentQuestion] = idx;
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < shuffledQuestions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        function showResults() {
+            clearInterval(timerInterval);
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+            document.querySelector('.timer-container').style.display = 'none';
+            
+            let correct = 0;
+            answers.forEach((ans, idx) => {
+                if (ans === shuffledQuestions[idx].correct) correct++;
+            });
+            
+            const percentage = (correct / shuffledQuestions.length) * 100;
+            document.getElementById('score').textContent = 
+                `${correct}/${shuffledQuestions.length} (${percentage.toFixed(1)}%)`;
+            
+            let msg = '';
+            if (percentage >= 90) msg = 'Excellent! Outstanding performance! 🌟';
+            else if (percentage >= 75) msg = 'Great job! Well done! 👍';
+            else if (percentage >= 60) msg = 'Good effort! Keep studying! 📚';
+            else msg = 'Keep practicing! You can do better! 💪';
+            
+            document.getElementById('resultMessage').textContent = msg;
+        }
+
+        function restartQuiz() {
+            document.getElementById('quiz').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+            document.querySelector('.timer-container').style.display = 'block';
+            initQuiz();
+        }
+
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
