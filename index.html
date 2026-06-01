@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grade 12 Advanced Physics - Full Comprehensive Exam (61 Questions)</title>
+  <title>Grade 12 Advanced Physics - INSPIRE EOT3 Exam (61 Questions)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <style>
@@ -25,6 +25,17 @@
     .phys { font-family: 'Times New Roman', serif; letter-spacing: 0.5px; direction: ltr; display: inline-block; }
     .timer-warning { color: #dc2626 !important; animation: pulse 1s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    .success-badge { 
+      display: inline-block; 
+      padding: 4px 12px; 
+      border-radius: 20px; 
+      font-weight: bold;
+      font-size: 0.875rem;
+    }
+    .grade-excellent { background: #dcfce7; color: #166534; }
+    .grade-good { background: #fef3c7; color: #92400e; }
+    .grade-pass { background: #dbeafe; color: #1e40af; }
+    .grade-fail { background: #fee2e2; color: #991b1b; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800 p-4 md:p-8 min-h-screen">
@@ -51,7 +62,7 @@
   <header class="max-w-5xl mx-auto bg-white p-6 rounded-xl shadow-md mb-8 border-l-4 border-indigo-600">
     <div class="text-center">
       <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">⚛️ Grade 12 Advanced Physics</h1>
-      <h2 class="text-lg text-indigo-600 font-semibold">Term 3 - Full Comprehensive Exam (61 Questions)</h2>
+      <h2 class="text-lg text-indigo-600 font-semibold">INSPIRE EOT3 - Full Comprehensive Exam (61 Questions)</h2>
     </div>
     <div class="mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
       <span>📅 Date: <input type="text" class="border-b border-gray-400 bg-transparent w-28 text-center"></span>
@@ -68,29 +79,29 @@
     <section class="bg-white p-6 rounded-xl shadow-lg">
       <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Part 1: Blackbody Radiation & Photon Basics</h2>
       <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-1">
           <strong>1.</strong> Which graph represents the Planck curve for two bodies x and y where Tx > Ty?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="a" class="mr-2"> a) Graph with x peak higher and shifted left</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="b" class="mr-2"> b) Graph with y peak higher and shifted left</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="c" class="mr-2"> c) Graph with both peaks at same position</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="d" class="mr-2"> d) Graph with x peak lower and shifted right</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q1" value="a" class="mr-2"> a) Graph with x peak higher and shifted left</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q1" value="b" class="mr-2"> b) Graph with y peak higher and shifted left</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q1" value="c" class="mr-2"> c) Graph with both peaks at same position</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q1" value="d" class="mr-2"> d) Graph with x peak lower and shifted right</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-2">
           <strong>2.</strong> Which region of the Planck curve contradicts classical physics?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="a" class="mr-2"> a) Region A (low frequency)</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="b" class="mr-2"> b) Region B (high frequency)</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="c" class="mr-2"> c) Both regions</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="d" class="mr-2"> d) Neither region</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q2" value="a" class="mr-2"> a) Region A (low frequency)</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q2" value="b" class="mr-2"> b) Region B (high frequency)</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q2" value="c" class="mr-2"> c) Both regions</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q2" value="d" class="mr-2"> d) Neither region</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-3">
           <strong>3.</strong> What does photon energy depend on?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="a" class="mr-2"> a) Number of photons</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="b" class="mr-2"> b) Its frequency</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="c" class="mr-2"> c) Its mass</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="d" class="mr-2"> d) All photons have the same energy</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q3" value="a" class="mr-2"> a) Number of photons</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q3" value="b" class="mr-2"> b) Its frequency</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q3" value="c" class="mr-2"> c) Its mass</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q3" value="d" class="mr-2"> d) All photons have the same energy</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
       </ol>
     </section>
@@ -99,61 +110,61 @@
     <section class="bg-white p-6 rounded-xl shadow-lg">
       <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Part 2: Photon Energy & Wavelength Calculations</h2>
       <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-4">
           <strong>4.</strong> A photon has a frequency of 5 × 10¹⁴ Hz. Its energy is closest to:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="a" class="mr-2"> a) 3.3 × 10⁻¹⁹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="b" class="mr-2"> b) 3.3 × 10⁻²⁰ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="c" class="mr-2"> c) 1.3 × 10⁻¹⁹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="d" class="mr-2"> d) 6.6 × 10⁻³⁴ J</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q4" value="a" class="mr-2"> a) 3.3 × 10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q4" value="b" class="mr-2"> b) 3.3 × 10⁻²⁰ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q4" value="c" class="mr-2"> c) 1.3 × 10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q4" value="d" class="mr-2"> d) 6.6 × 10⁻³⁴ J</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-5">
           <strong>5.</strong> Frequency of beam A is twice beam B. Ratio of energies EA/EB is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="a" class="mr-2"> a) 1/2</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="b" class="mr-2"> b) 1/4</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="c" class="mr-2"> c) 2</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="d" class="mr-2"> d) 4</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: c)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q5" value="a" class="mr-2"> a) 1/2</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q5" value="b" class="mr-2"> b) 1/4</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q5" value="c" class="mr-2"> c) 2</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q5" value="d" class="mr-2"> d) 4</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: c)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-6">
           <strong>6.</strong> Wavelength of beam A is twice beam B. Energy of photon in A is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="a" class="mr-2"> a) Half the energy of a photon in beam B</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="b" class="mr-2"> b) One-fourth the energy of a photon in beam B</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="c" class="mr-2"> c) Twice the energy of a photon in beam B</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="d" class="mr-2"> d) Four times the energy of a photon in beam B</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q6" value="a" class="mr-2"> a) Half the energy of a photon in beam B</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q6" value="b" class="mr-2"> b) One-fourth the energy of a photon in beam B</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q6" value="c" class="mr-2"> c) Twice the energy of a photon in beam B</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q6" value="d" class="mr-2"> d) Four times the energy of a photon in beam B</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-7">
           <strong>7.</strong> What is a photon's energy if the wavelength is 515 nm?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="a" class="mr-2"> a) 0.42 eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="b" class="mr-2"> b) 2.41 eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="c" class="mr-2"> c) 6.18 × 10⁻³⁸ eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="d" class="mr-2"> d) 3.86 × 10⁻¹⁹ eV</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q7" value="a" class="mr-2"> a) 0.42 eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q7" value="b" class="mr-2"> b) 2.41 eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q7" value="c" class="mr-2"> c) 6.18 × 10⁻³⁸ eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q7" value="d" class="mr-2"> d) 3.86 × 10⁻¹⁹ eV</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-8">
           <strong>8.</strong> A photon's energy is 2.03 eV. What is the photon's wavelength?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="a" class="mr-2"> a) 611 nm</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="b" class="mr-2"> b) 2517 nm</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="c" class="mr-2"> c) 0.0016 nm</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="d" class="mr-2"> d) 9.8 × 10⁻¹⁷ nm</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q8" value="a" class="mr-2"> a) 611 nm</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q8" value="b" class="mr-2"> b) 2517 nm</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q8" value="c" class="mr-2"> c) 0.0016 nm</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q8" value="d" class="mr-2"> d) 9.8 × 10⁻¹⁷ nm</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-9">
           <strong>9.</strong> A helium-neon laser emits photons with a wavelength of 632.8 nm. Energy of each photon?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="a" class="mr-2"> a) 3.135 × 10⁻¹⁹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="b" class="mr-2"> b) 2.546 × 10⁸ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="c" class="mr-2"> c) 8.231 × 10⁻¹⁷ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="d" class="mr-2"> d) 1.639 × 10³⁴ J</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q9" value="a" class="mr-2"> a) 3.135 × 10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q9" value="b" class="mr-2"> b) 2.546 × 10⁸ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q9" value="c" class="mr-2"> c) 8.231 × 10⁻¹⁷ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q9" value="d" class="mr-2"> d) 1.639 × 10³⁴ J</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-10">
           <strong>10.</strong> A glowing object emits radiation with frequency 1.2 × 10¹⁵ Hz. Energy in eV?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="a" class="mr-2"> a) 3.0 eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="b" class="mr-2"> b) 5.0 eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="c" class="mr-2"> c) 7.6 eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="d" class="mr-2"> d) 9.3 eV</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q10" value="a" class="mr-2"> a) 3.0 eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q10" value="b" class="mr-2"> b) 5.0 eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q10" value="c" class="mr-2"> c) 7.6 eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q10" value="d" class="mr-2"> d) 9.3 eV</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
       </ol>
     </section>
@@ -162,61 +173,61 @@
     <section class="bg-white p-6 rounded-xl shadow-lg">
       <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Part 3: Energy Levels & Quantum Theory</h2>
       <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-11">
           <strong>11.</strong> If an atom changes from energy level 3hf to 2hf, the atom:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="a" class="mr-2"> a) Absorbs 5hf</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="b" class="mr-2"> b) Emits 5hf</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="c" class="mr-2"> c) Absorbs hf</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="d" class="mr-2"> d) Emits hf</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q11" value="a" class="mr-2"> a) Absorbs 5hf</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q11" value="b" class="mr-2"> b) Emits 5hf</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q11" value="c" class="mr-2"> c) Absorbs hf</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q11" value="d" class="mr-2"> d) Emits hf</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-12">
           <strong>12.</strong> Which statement best supports quantum theory?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="a" class="mr-2"> a) Light travels as waves only</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="b" class="mr-2"> b) Energy is emitted continuously</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="c" class="mr-2"> c) Energy is emitted in discrete packets</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="d" class="mr-2"> d) Radiation does not depend on frequency</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: c)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q12" value="a" class="mr-2"> a) Light travels as waves only</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q12" value="b" class="mr-2"> b) Energy is emitted continuously</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q12" value="c" class="mr-2"> c) Energy is emitted in discrete packets</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q12" value="d" class="mr-2"> d) Radiation does not depend on frequency</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: c)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-13">
           <strong>13.</strong> Which option cannot represent the energy level of an atom?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="a" class="mr-2"> a) 3hf</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="b" class="mr-2"> b) 2hf</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="c" class="mr-2"> c) hf</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="d" class="mr-2"> d) 2/3 hf</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q13" value="a" class="mr-2"> a) 3hf</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q13" value="b" class="mr-2"> b) 2hf</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q13" value="c" class="mr-2"> c) hf</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q13" value="d" class="mr-2"> d) 2/3 hf</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-14">
           <strong>14.</strong> What is the possible value for n in E = nhf?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="a" class="mr-2"> a) 0.1</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="b" class="mr-2"> b) 1.0</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="c" class="mr-2"> c) 1.5</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="d" class="mr-2"> d) 2.5</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q14" value="a" class="mr-2"> a) 0.1</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q14" value="b" class="mr-2"> b) 1.0</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q14" value="c" class="mr-2"> c) 1.5</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q14" value="d" class="mr-2"> d) 2.5</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-15">
           <strong>15.</strong> A light source emits total energy 3.31 × 10⁻¹⁸ J. Single quantum is 6.62 × 10⁻¹⁹ J. How many quanta?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="a" class="mr-2"> a) 2</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="b" class="mr-2"> b) 4</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="c" class="mr-2"> c) 5</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="d" class="mr-2"> d) 10</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: c)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q15" value="a" class="mr-2"> a) 2</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q15" value="b" class="mr-2"> b) 4</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q15" value="c" class="mr-2"> c) 5</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q15" value="d" class="mr-2"> d) 10</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: c)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-16">
           <strong>16.</strong> An EM wave has single photon energy 4.0 × 10⁻¹⁹ J. Which could represent total energy of a beam?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="a" class="mr-2"> a) 2.0 × 10⁻¹⁹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="b" class="mr-2"> b) 6.0 × 10⁻¹⁹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="c" class="mr-2"> c) 12.0 × 10⁻¹⁹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="d" class="mr-2"> d) 14.0 × 10⁻¹⁹ J</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: c)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q16" value="a" class="mr-2"> a) 2.0 × 10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q16" value="b" class="mr-2"> b) 6.0 × 10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q16" value="c" class="mr-2"> c) 12.0 × 10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q16" value="d" class="mr-2"> d) 14.0 × 10⁻¹⁹ J</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: c)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-17">
           <strong>17.</strong> A laser pulse (600 nm) contains total energy 3.3 × 10⁻¹⁸ J. How many photons?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="a" class="mr-2"> a) 5</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="b" class="mr-2"> b) 10</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="c" class="mr-2"> c) 15</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="d" class="mr-2"> d) 20</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q17" value="a" class="mr-2"> a) 5</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q17" value="b" class="mr-2"> b) 10</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q17" value="c" class="mr-2"> c) 15</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q17" value="d" class="mr-2"> d) 20</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
       </ol>
     </section>
@@ -225,61 +236,61 @@
     <section class="bg-white p-6 rounded-xl shadow-lg">
       <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Part 4: Photoelectric Effect Concepts</h2>
       <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-18">
           <strong>18.</strong> What is the definition of the photoelectric effect?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="a" class="mr-2"> a) Absorption of electrons...</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="b" class="mr-2"> b) The emission of electrons when electromagnetic radiation falls on an object</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="c" class="mr-2"> c) Emission of protons...</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="d" class="mr-2"> d) Absorption of protons...</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q18" value="a" class="mr-2"> a) Absorption of electrons...</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q18" value="b" class="mr-2"> b) The emission of electrons when electromagnetic radiation falls on an object</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q18" value="c" class="mr-2"> c) Emission of protons...</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q18" value="d" class="mr-2"> d) Absorption of protons...</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-19">
           <strong>19.</strong> The emission of electrons from a metal surface depends on:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="a" class="mr-2"> a) Angle of incidence</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="b" class="mr-2"> b) The wavelength (frequency)</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="c" class="mr-2"> c) The intensity</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="d" class="mr-2"> d) The speed of light</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q19" value="a" class="mr-2"> a) Angle of incidence</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q19" value="b" class="mr-2"> b) The wavelength (frequency)</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q19" value="c" class="mr-2"> c) The intensity</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q19" value="d" class="mr-2"> d) The speed of light</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-20">
           <strong>20.</strong> What is the work function of a metal?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="a" class="mr-2"> a) Work an emitted electron can do</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="b" class="mr-2"> b) Equal to threshold frequency</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="c" class="mr-2"> c) Energy needed to free innermost electron</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="d" class="mr-2"> d) The energy needed to free the most weakly bound electron</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q20" value="a" class="mr-2"> a) Work an emitted electron can do</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q20" value="b" class="mr-2"> b) Equal to threshold frequency</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q20" value="c" class="mr-2"> c) Energy needed to free innermost electron</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q20" value="d" class="mr-2"> d) The energy needed to free the most weakly bound electron</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-21">
           <strong>21.</strong> How is the threshold frequency related to the photoelectric effect?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="a" class="mr-2"> a) Min freq to eject atoms from anode</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="b" class="mr-2"> b) Max freq to eject atoms</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="c" class="mr-2"> c) Freq below which electrons are ejected</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="d" class="mr-2"> d) The minimum frequency of incident radiation needed to cause the ejection of electrons from an atom.</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q21" value="a" class="mr-2"> a) Min freq to eject atoms from anode</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q21" value="b" class="mr-2"> b) Max freq to eject atoms</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q21" value="c" class="mr-2"> c) Freq below which electrons are ejected</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q21" value="d" class="mr-2"> d) The minimum frequency of incident radiation needed to cause the ejection of electrons from an atom.</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-22">
           <strong>22.</strong> What happens to # of photons and Max KE when frequency of light increases?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="a" class="mr-2"> a) Photons decrease, KE no change</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="b" class="mr-2"> b) Photons increase, KE no change</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="c" class="mr-2"> c) Photons no change, KE decreases</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="d" class="mr-2"> d) Photons no change, KE increases</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q22" value="a" class="mr-2"> a) Photons decrease, KE no change</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q22" value="b" class="mr-2"> b) Photons increase, KE no change</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q22" value="c" class="mr-2"> c) Photons no change, KE decreases</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q22" value="d" class="mr-2"> d) Photons no change, KE increases</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-23">
           <strong>23.</strong> What happens to # of electrons and Max KE when intensity of light increases?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="a" class="mr-2"> a) Electrons decrease, KE no change</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="b" class="mr-2"> b) Electrons increase, KE no change</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="c" class="mr-2"> c) Electrons no change, KE decreases</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="d" class="mr-2"> d) Electrons no change, KE increases</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q23" value="a" class="mr-2"> a) Electrons decrease, KE no change</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q23" value="b" class="mr-2"> b) Electrons increase, KE no change</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q23" value="c" class="mr-2"> c) Electrons no change, KE decreases</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q23" value="d" class="mr-2"> d) Electrons no change, KE increases</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-24">
           <strong>24.</strong> Table: Mg(3.66), K(2.3), Li(2.9), Cs(1.9), Zr(4.05). Which emit with green light (500 nm, ~2.48 eV)?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="a" class="mr-2"> a) Mg and Zr</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="b" class="mr-2"> b) K and Cs</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="c" class="mr-2"> c) Li only</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="d" class="mr-2"> d) None</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q24" value="a" class="mr-2"> a) Mg and Zr</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q24" value="b" class="mr-2"> b) K and Cs</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q24" value="c" class="mr-2"> c) Li only</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q24" value="d" class="mr-2"> d) None</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
       </ol>
     </section>
@@ -288,37 +299,37 @@
     <section class="bg-white p-6 rounded-xl shadow-lg">
       <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Part 5: Maximum Kinetic Energy vs. Frequency Graph (Analysis)</h2>
       <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-25">
           <strong>25.</strong> Light of frequency (8 × 10¹⁴ Hz) falls on four metals (Cs, Na, Mg, Ag). Thresholds: Cs~5, Na~6, Mg~9, Ag~11. Which emits?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="a" class="mr-2"> a) Mg and Ag</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="b" class="mr-2"> b) Na and Cs</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="c" class="mr-2"> c) All four metals</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="d" class="mr-2"> d) None of them</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q25" value="a" class="mr-2"> a) Mg and Ag</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q25" value="b" class="mr-2"> b) Na and Cs</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q25" value="c" class="mr-2"> c) All four metals</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q25" value="d" class="mr-2"> d) None of them</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-26">
           <strong>26.</strong> Which metal releases electrons with the greatest kinetic energy at 8 × 10¹⁴ Hz?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="a" class="mr-2"> a) Mg</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="b" class="mr-2"> b) Ag</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="c" class="mr-2"> c) Na</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="d" class="mr-2"> d) Cs</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q26" value="a" class="mr-2"> a) Mg</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q26" value="b" class="mr-2"> b) Ag</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q26" value="c" class="mr-2"> c) Na</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q26" value="d" class="mr-2"> d) Cs</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-27">
           <strong>27.</strong> Light of frequency (1.2 × 10¹⁵ Hz) falls on the four metals. Which emits?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="a" class="mr-2"> a) Cs and Na only</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="b" class="mr-2"> b) Cs, Na, and Mg</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="c" class="mr-2"> c) All four metals</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="d" class="mr-2"> d) Only Ag</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q27" value="a" class="mr-2"> a) Cs and Na only</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q27" value="b" class="mr-2"> b) Cs, Na, and Mg</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q27" value="c" class="mr-2"> c) All four metals</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q27" value="d" class="mr-2"> d) Only Ag</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-28">
           <strong>28.</strong> Which metal releases electrons with the greatest kinetic energy at 1.2 × 10¹⁵ Hz?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="a" class="mr-2"> a) Mg</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="b" class="mr-2"> b) Ag</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="c" class="mr-2"> c) Na</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="d" class="mr-2"> d) Cs</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q28" value="a" class="mr-2"> a) Mg</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q28" value="b" class="mr-2"> b) Ag</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q28" value="c" class="mr-2"> c) Na</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q28" value="d" class="mr-2"> d) Cs</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
       </ol>
     </section>
@@ -327,69 +338,69 @@
     <section class="bg-white p-6 rounded-xl shadow-lg">
       <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Part 6: Advanced Photoelectric Calculations</h2>
       <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-29">
           <strong>29.</strong> Light (2.9 eV) shines on Ca(2.9), Cu(4.7), Cs(2.1). Which is true?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q29" value="a" class="mr-2"> a) Electrons released from all three.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q29" value="b" class="mr-2"> b) No electrons released.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q29" value="c" class="mr-2"> c) Only electrons released from Calcium.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q29" value="d" class="mr-2"> d) Electrons are released from both calcium and cesium.</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q29" value="a" class="mr-2"> a) Electrons released from all three.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q29" value="b" class="mr-2"> b) No electrons released.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q29" value="c" class="mr-2"> c) Only electrons released from Calcium.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q29" value="d" class="mr-2"> d) Electrons are released from both calcium and cesium.</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-30">
           <strong>30.</strong> Radiation energy 5.17 eV strikes photocell. Work function 2.31 eV. Energy of ejected photoelectron?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q30" value="a" class="mr-2"> a) 0.00 eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q30" value="b" class="mr-2"> b) 2.86 eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q30" value="c" class="mr-2"> c) 2.23 eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q30" value="d" class="mr-2"> d) 7.48 eV</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q30" value="a" class="mr-2"> a) 0.00 eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q30" value="b" class="mr-2"> b) 2.86 eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q30" value="c" class="mr-2"> c) 2.23 eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q30" value="d" class="mr-2"> d) 7.48 eV</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-31">
           <strong>31.</strong> Number of electrons emitted from potassium surface is directly proportional to:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q31" value="a" class="mr-2"> a) The intensity of the incident light</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q31" value="b" class="mr-2"> b) The frequency of the incident light</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q31" value="c" class="mr-2"> c) The work function</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q31" value="d" class="mr-2"> d) The threshold frequency</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q31" value="a" class="mr-2"> a) The intensity of the incident light</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q31" value="b" class="mr-2"> b) The frequency of the incident light</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q31" value="c" class="mr-2"> c) The work function</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q31" value="d" class="mr-2"> d) The threshold frequency</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-32">
           <strong>32.</strong> Photon energy 8 eV ejects electrons with KE 6 eV. If another light (6 eV) falls on same metal, KE is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q32" value="a" class="mr-2"> a) 2 eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q32" value="b" class="mr-2"> b) 4 eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q32" value="c" class="mr-2"> c) 6 eV</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q32" value="d" class="mr-2"> d) 14 eV</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q32" value="a" class="mr-2"> a) 2 eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q32" value="b" class="mr-2"> b) 4 eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q32" value="c" class="mr-2"> c) 6 eV</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q32" value="d" class="mr-2"> d) 14 eV</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-33">
           <strong>33.</strong> Photons (f) give KE 0.5 eV. Photons (1.2f) give KE 0.8 eV. Work function in Joules?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q33" value="a" class="mr-2"> a) 1.6 × 10⁻¹⁹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q33" value="b" class="mr-2"> b) 3.2 × 10⁻¹⁹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q33" value="c" class="mr-2"> c) 4.8 × 10⁻¹⁹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q33" value="d" class="mr-2"> d) 6.4 × 10⁻¹⁹ J</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q33" value="a" class="mr-2"> a) 1.6 × 10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q33" value="b" class="mr-2"> b) 3.2 × 10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q33" value="c" class="mr-2"> c) 4.8 × 10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q33" value="d" class="mr-2"> d) 6.4 × 10⁻¹⁹ J</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-34">
           <strong>34.</strong> Photon (f) gives KE₁ = 0.5hf. If photon (2f) strikes, KE₂ is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q34" value="a" class="mr-2"> a) 0.5 hf</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q34" value="b" class="mr-2"> b) 1.5 hf</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q34" value="c" class="mr-2"> c) 2.5 hf</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q34" value="d" class="mr-2"> d) 3 hf</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q34" value="a" class="mr-2"> a) 0.5 hf</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q34" value="b" class="mr-2"> b) 1.5 hf</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q34" value="c" class="mr-2"> c) 2.5 hf</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q34" value="d" class="mr-2"> d) 3 hf</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-35">
           <strong>35.</strong> Max KE is 6.9 × 10⁻¹⁹ J. What is the stopping potential?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q35" value="a" class="mr-2"> a) 4.3 V</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q35" value="b" class="mr-2"> b) 180 V</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q35" value="c" class="mr-2"> c) 0.23 V</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q35" value="d" class="mr-2"> d) 6.9 × 10⁻¹⁹ V</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q35" value="a" class="mr-2"> a) 4.3 V</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q35" value="b" class="mr-2"> b) 180 V</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q35" value="c" class="mr-2"> c) 0.23 V</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q35" value="d" class="mr-2"> d) 6.9 × 10⁻¹⁹ V</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-36">
           <strong>36.</strong> Electron has KE 3.1 eV. What is KE in Joules?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q36" value="a" class="mr-2"> a) 0.52 × 10⁻¹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q36" value="b" class="mr-2"> b) 1.94 × 10⁻¹⁹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q36" value="c" class="mr-2"> c) 1.94 × 10¹⁹ J</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q36" value="d" class="mr-2"> d) 4.96 × 10⁻¹⁹ J</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q36" value="a" class="mr-2"> a) 0.52 × 10⁻¹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q36" value="b" class="mr-2"> b) 1.94 × 10⁻¹⁹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q36" value="c" class="mr-2"> c) 1.94 × 10¹⁹ J</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q36" value="d" class="mr-2"> d) 4.96 × 10⁻¹⁹ J</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
       </ol>
     </section>
@@ -398,45 +409,45 @@
     <section class="bg-white p-6 rounded-xl shadow-lg">
       <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Part 7: Advanced Graph Analysis & Thresholds</h2>
       <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-37">
           <strong>37.</strong> Mg threshold is 8.84 × 10¹⁴ Hz. Which radiation ejects electrons?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q37" value="a" class="mr-2"> a) Violet light (7.5 × 10¹⁴ Hz)</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q37" value="b" class="mr-2"> b) FM radio (1.0 × 10³ Hz)</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q37" value="c" class="mr-2"> c) Red light (4.6 × 10¹⁴ Hz)</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q37" value="d" class="mr-2"> d) X-rays (1.0 × 10¹⁵ Hz)</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q37" value="a" class="mr-2"> a) Violet light (7.5 × 10¹⁴ Hz)</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q37" value="b" class="mr-2"> b) FM radio (1.0 × 10³ Hz)</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q37" value="c" class="mr-2"> c) Red light (4.6 × 10¹⁴ Hz)</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q37" value="d" class="mr-2"> d) X-rays (1.0 × 10¹⁵ Hz)</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-38">
           <strong>38.</strong> Graph shows KE vs f. X-intercept is 2.5. Threshold frequency is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q38" value="a" class="mr-2"> a) 10 × 10¹⁴ Hz</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q38" value="b" class="mr-2"> b) 0 Hz</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q38" value="c" class="mr-2"> c) 5 × 10¹⁴ Hz</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q38" value="d" class="mr-2"> d) 2.5 × 10¹⁴ Hz</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q38" value="a" class="mr-2"> a) 10 × 10¹⁴ Hz</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q38" value="b" class="mr-2"> b) 0 Hz</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q38" value="c" class="mr-2"> c) 5 × 10¹⁴ Hz</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q38" value="d" class="mr-2"> d) 2.5 × 10¹⁴ Hz</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-39">
           <strong>39.</strong> Based on the graph (KE vs f), what does the slope represent?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q39" value="a" class="mr-2"> a) Work function</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q39" value="b" class="mr-2"> b) Planck's constant</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q39" value="c" class="mr-2"> c) Threshold frequency</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q39" value="d" class="mr-2"> d) Electron charge</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q39" value="a" class="mr-2"> a) Work function</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q39" value="b" class="mr-2"> b) Planck's constant</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q39" value="c" class="mr-2"> c) Threshold frequency</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q39" value="d" class="mr-2"> d) Electron charge</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-42">
           <strong>42.</strong> Graph of KE_max vs f. Ratio of y-intercept (b) to x-intercept (a) represents:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q42" value="a" class="mr-2"> a) Planck's constant</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q42" value="b" class="mr-2"> b) Threshold frequency</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q42" value="c" class="mr-2"> c) Work function</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q42" value="d" class="mr-2"> d) Photon energy</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q42" value="a" class="mr-2"> a) Planck's constant</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q42" value="b" class="mr-2"> b) Threshold frequency</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q42" value="c" class="mr-2"> c) Work function</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q42" value="d" class="mr-2"> d) Photon energy</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-43">
           <strong>43.</strong> Graph shows threshold frequency at 0.5 × 10¹⁵ Hz. Wavelength to enable emission must be:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q43" value="a" class="mr-2"> a) λ < 0.6 μm</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q43" value="b" class="mr-2"> b) λ = 0.6 μm</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q43" value="c" class="mr-2"> c) λ > 2 μm</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q43" value="d" class="mr-2"> d) λ = 2 μm</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q43" value="a" class="mr-2"> a) λ < 0.6 μm</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q43" value="b" class="mr-2"> b) λ = 0.6 μm</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q43" value="c" class="mr-2"> c) λ > 2 μm</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q43" value="d" class="mr-2"> d) λ = 2 μm</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
       </ol>
     </section>
@@ -445,29 +456,29 @@
     <section class="bg-white p-6 rounded-xl shadow-lg">
       <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Part 8: Metal Comparisons & Intensity Effects</h2>
       <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-44">
           <strong>44.</strong> Light (1.5 × 10¹⁵ Hz) on Sodium (Φ=2.28) and Platinum (Φ=6.35). Which emits with greater KE and why?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q44" value="a" class="mr-2"> a) Platinum, because higher work function.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q44" value="b" class="mr-2"> b) Sodium, because it has a lower work function, leaving more energy for the electron's motion.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q44" value="c" class="mr-2"> c) Both same KE.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q44" value="d" class="mr-2"> d) Neither emits.</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q44" value="a" class="mr-2"> a) Platinum, because higher work function.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q44" value="b" class="mr-2"> b) Sodium, because it has a lower work function, leaving more energy for the electron's motion.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q44" value="c" class="mr-2"> c) Both same KE.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q44" value="d" class="mr-2"> d) Neither emits.</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-45">
           <strong>45.</strong> Light (f) shines on Zinc and Copper. f > thresholds for both. Zinc has lower threshold than Copper. Compare KE_max.<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q45" value="a" class="mr-2"> a) K_max for Zinc is greater than K_max for copper</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q45" value="b" class="mr-2"> b) K_max for Zinc is less than K_max for copper</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q45" value="c" class="mr-2"> c) K_max for Zinc is equal to K_max for copper</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q45" value="d" class="mr-2"> d) Cannot be determined.</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q45" value="a" class="mr-2"> a) K_max for Zinc is greater than K_max for copper</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q45" value="b" class="mr-2"> b) K_max for Zinc is less than K_max for copper</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q45" value="c" class="mr-2"> c) K_max for Zinc is equal to K_max for copper</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q45" value="d" class="mr-2"> d) Cannot be determined.</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-46">
           <strong>46.</strong> Light (1.0 × 10¹⁵ Hz) on Calcium. Intensity is doubled, frequency constant. Result?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q46" value="a" class="mr-2"> a) Max KE doubles.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q46" value="b" class="mr-2"> b) Threshold frequency decreases.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q46" value="c" class="mr-2"> c) Max KE unchanged, rate of electron emission increases.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q46" value="d" class="mr-2"> d) Both KE and rate double.</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: c)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q46" value="a" class="mr-2"> a) Max KE doubles.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q46" value="b" class="mr-2"> b) Threshold frequency decreases.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q46" value="c" class="mr-2"> c) Max KE unchanged, rate of electron emission increases.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q46" value="d" class="mr-2"> d) Both KE and rate double.</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: c)</div>
         </li>
       </ol>
     </section>
@@ -476,29 +487,29 @@
     <section class="bg-white p-6 rounded-xl shadow-lg">
       <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Part 9: Photoelectric Effect Applications (Advanced)</h2>
       <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-47">
           <strong>47.</strong> In the photocell diagram, [1] points to the curved plate (emitter) and [2] points to the rod (collector). What are they?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q47" value="a" class="mr-2"> a) [1] Anode, [2] Cathode</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q47" value="b" class="mr-2"> b) [1] Cathode, [2] Anode</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q47" value="c" class="mr-2"> c) [1] Battery, [2] Resistor</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q47" value="d" class="mr-2"> d) [1] Photon, [2] Electron</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q47" value="a" class="mr-2"> a) [1] Anode, [2] Cathode</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q47" value="b" class="mr-2"> b) [1] Cathode, [2] Anode</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q47" value="c" class="mr-2"> c) [1] Battery, [2] Resistor</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q47" value="d" class="mr-2"> d) [1] Photon, [2] Electron</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-48">
           <strong>48.</strong> Two frequencies (f and 2f) give max KE (E and 3E). What is the threshold frequency (f₀)?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q48" value="a" class="mr-2"> a) f₀ = 1/3 f</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q48" value="b" class="mr-2"> b) f₀ = 1/2 f</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q48" value="c" class="mr-2"> c) f₀ = f</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q48" value="d" class="mr-2"> d) f₀ = 2f</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q48" value="a" class="mr-2"> a) f₀ = 1/3 f</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q48" value="b" class="mr-2"> b) f₀ = 1/2 f</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q48" value="c" class="mr-2"> c) f₀ = f</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q48" value="d" class="mr-2"> d) f₀ = 2f</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-49">
           <strong>49.</strong> Longest wavelength for ejection is 273 nm. Laser at 300 nm. What happens?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q49" value="a" class="mr-2"> a) Work function increases.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q49" value="b" class="mr-2"> b) Electrons ejected with lower KE.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q49" value="c" class="mr-2"> c) High KE ejection.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q49" value="d" class="mr-2"> d) No electrons will be ejected from the sample.</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q49" value="a" class="mr-2"> a) Work function increases.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q49" value="b" class="mr-2"> b) Electrons ejected with lower KE.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q49" value="c" class="mr-2"> c) High KE ejection.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q49" value="d" class="mr-2"> d) No electrons will be ejected from the sample.</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
       </ol>
     </section>
@@ -507,101 +518,101 @@
     <section class="bg-white p-6 rounded-xl shadow-lg">
       <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Part 10: de Broglie Wavelength & Quantum Mechanics</h2>
       <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-50">
           <strong>50.</strong> An electron is accelerated by 75 V. What is its de Broglie wavelength?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q50" value="a" class="mr-2"> a) 0.014 nm</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q50" value="b" class="mr-2"> b) 0.141 nm</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q50" value="c" class="mr-2"> c) 1.41 nm</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q50" value="d" class="mr-2"> d) 14.1 nm</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q50" value="a" class="mr-2"> a) 0.014 nm</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q50" value="b" class="mr-2"> b) 0.141 nm</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q50" value="c" class="mr-2"> c) 1.41 nm</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q50" value="d" class="mr-2"> d) 14.1 nm</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-51">
           <strong>51.</strong> If accelerating voltage is doubled, how does de Broglie wavelength change?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q51" value="a" class="mr-2"> a) It is halved.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q51" value="b" class="mr-2"> b) It is doubled.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q51" value="c" class="mr-2"> c) It decreases by a factor of √2</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q51" value="d" class="mr-2"> d) It increases by a factor of √2</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: c)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q51" value="a" class="mr-2"> a) It is halved.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q51" value="b" class="mr-2"> b) It is doubled.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q51" value="c" class="mr-2"> c) It decreases by a factor of √2</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q51" value="d" class="mr-2"> d) It increases by a factor of √2</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: c)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-52">
           <strong>52.</strong> Hydrogen atom (v, λ). Helium mass is 4x Hydrogen. Same speed. Helium wavelength?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q52" value="a" class="mr-2"> a) λ/4</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q52" value="b" class="mr-2"> b) λ</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q52" value="c" class="mr-2"> c) 2λ</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q52" value="d" class="mr-2"> d) 4λ</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q52" value="a" class="mr-2"> a) λ/4</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q52" value="b" class="mr-2"> b) λ</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q52" value="c" class="mr-2"> c) 2λ</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q52" value="d" class="mr-2"> d) 4λ</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: a)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-53">
           <strong>53.</strong> Alpha particle and proton accelerated by same potential difference. Ratio of de Broglie wavelengths (Alpha : Proton)?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q53" value="a" class="mr-2"> a) 1 : 2</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q53" value="b" class="mr-2"> b) 1 : √8</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q53" value="c" class="mr-2"> c) √8 : 1</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q53" value="d" class="mr-2"> d) 2 : 1</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q53" value="a" class="mr-2"> a) 1 : 2</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q53" value="b" class="mr-2"> b) 1 : √8</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q53" value="c" class="mr-2"> c) √8 : 1</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q53" value="d" class="mr-2"> d) 2 : 1</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-54">
           <strong>54.</strong> Two photons: λ and 3λ. Relationship for momentum?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q54" value="a" class="mr-2"> a) P₁ = 9P₂</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q54" value="b" class="mr-2"> b) P₁ = P₂</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q54" value="c" class="mr-2"> c) P₁ = 1/3 P₂</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q54" value="d" class="mr-2"> d) P₁ = 3P₂</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q54" value="a" class="mr-2"> a) P₁ = 9P₂</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q54" value="b" class="mr-2"> b) P₁ = P₂</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q54" value="c" class="mr-2"> c) P₁ = 1/3 P₂</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q54" value="d" class="mr-2"> d) P₁ = 3P₂</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-55">
           <strong>55.</strong> Electron and proton move at same speed (v). Correct relationship for de Broglie wavelength?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q55" value="a" class="mr-2"> a) λ_p = 2 λ_e</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q55" value="b" class="mr-2"> b) λ_p < λ_e</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q55" value="c" class="mr-2"> c) λ_p > λ_e</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q55" value="d" class="mr-2"> d) λ_p = λ_e</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q55" value="a" class="mr-2"> a) λ_p = 2 λ_e</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q55" value="b" class="mr-2"> b) λ_p < λ_e</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q55" value="c" class="mr-2"> c) λ_p > λ_e</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q55" value="d" class="mr-2"> d) λ_p = λ_e</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-56">
           <strong>56.</strong> Proton and electron have same kinetic energy. Which has longer de Broglie wavelength and why?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q56" value="a" class="mr-2"> a) They have the same wavelength...</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q56" value="b" class="mr-2"> b) The proton, because it has a larger mass.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q56" value="c" class="mr-2"> c) The electron, because it has a negative charge.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q56" value="d" class="mr-2"> d) The electron, because it has a smaller mass.</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q56" value="a" class="mr-2"> a) They have the same wavelength...</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q56" value="b" class="mr-2"> b) The proton, because it has a larger mass.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q56" value="c" class="mr-2"> c) The electron, because it has a negative charge.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q56" value="d" class="mr-2"> d) The electron, because it has a smaller mass.</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-57">
           <strong>57.</strong> According to Heisenberg's uncertainty principle, which statement is true?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q57" value="a" class="mr-2"> a) Position and momentum can be measured simultaneously...</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q57" value="b" class="mr-2"> b) The more precisely its position is measured, the greater the uncertainty in its momentum.</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q57" value="c" class="mr-2"> c) The more precisely its velocity is measured...</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q57" value="d" class="mr-2"> d) The uncertainty in its position is directly proportional...</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q57" value="a" class="mr-2"> a) Position and momentum can be measured simultaneously...</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q57" value="b" class="mr-2"> b) The more precisely its position is measured, the greater the uncertainty in its momentum.</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q57" value="c" class="mr-2"> c) The more precisely its velocity is measured...</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q57" value="d" class="mr-2"> d) The uncertainty in its position is directly proportional...</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-58">
           <strong>58.</strong> The photon has a particle property, and its momentum is given by:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q58" value="a" class="mr-2"> a) P = h/C</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q58" value="b" class="mr-2"> b) P = h/λ</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q58" value="c" class="mr-2"> c) P = h/f</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q58" value="d" class="mr-2"> d) P = λ/C</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q58" value="a" class="mr-2"> a) P = h/C</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q58" value="b" class="mr-2"> b) P = h/λ</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q58" value="c" class="mr-2"> c) P = h/f</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q58" value="d" class="mr-2"> d) P = λ/C</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: b)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-59">
           <strong>59.</strong> In the equation: X = hf/C. What does the symbol X represent?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q59" value="a" class="mr-2"> a) Photon speed</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q59" value="b" class="mr-2"> b) Photon wavelength</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q59" value="c" class="mr-2"> c) Photon momentum</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q59" value="d" class="mr-2"> d) Photon energy</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: c)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q59" value="a" class="mr-2"> a) Photon speed</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q59" value="b" class="mr-2"> b) Photon wavelength</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q59" value="c" class="mr-2"> c) Photon momentum</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q59" value="d" class="mr-2"> d) Photon energy</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: c)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-60">
           <strong>60.</strong> In the equation: X = hC/λ. What does the symbol X represent?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q60" value="a" class="mr-2"> a) Photon speed</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q60" value="b" class="mr-2"> b) Photon wavelength</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q60" value="c" class="mr-2"> c) Photon momentum</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q60" value="d" class="mr-2"> d) Photon energy</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q60" value="a" class="mr-2"> a) Photon speed</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q60" value="b" class="mr-2"> b) Photon wavelength</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q60" value="c" class="mr-2"> c) Photon momentum</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q60" value="d" class="mr-2"> d) Photon energy</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+        <li class="border-l-4 border-indigo-500 pl-4 py-2" id="q-61">
           <strong>61.</strong> The Compton effect shows that, compared to an incident photon, a scattered photon has:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q61" value="a" class="mr-2"> a) Greater speed</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q61" value="b" class="mr-2"> b) Greater frequency</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q61" value="c" class="mr-2"> c) Shorter wavelength</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q61" value="d" class="mr-2"> d) Lower frequency</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: d)</div>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q61" value="a" class="mr-2"> a) Greater speed</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q61" value="b" class="mr-2"> b) Greater frequency</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q61" value="c" class="mr-2"> c) Shorter wavelength</label>
+          <label class="ml-4 cursor-pointer block mt-1"><input type="radio" name="q61" value="d" class="mr-2"> d) Lower frequency</label>
+          <div class="answer-box text-green-700 mt-2 font-medium hidden">✅ Answer: d)</div>
         </li>
       </ol>
     </section>
@@ -640,6 +651,13 @@
       </div>
     </div>
 
+    <!-- Success Rate Badge -->
+    <div class="text-center mb-6">
+      <span id="success-badge" class="success-badge grade-excellent">Excellent - 100%</span>
+      <p id="success-percent" class="text-4xl font-bold text-emerald-600 mt-2">100%</p>
+      <p class="text-sm text-gray-500">Success Rate</p>
+    </div>
+
     <div class="bg-gray-50 p-6 rounded-xl mb-6">
       <h3 class="font-bold text-lg mb-4">Score Breakdown by Topic:</h3>
       <div id="breakdown" class="space-y-2"></div>
@@ -657,7 +675,7 @@
   </div>
 
   <footer class="max-w-5xl mx-auto mt-10 mb-8 text-center text-gray-500 text-sm no-print">
-    © Grade 12 Advanced Physics | Term 3 - Full Comprehensive Exam | Auto-Grading System | Mr. Mohammed Hesham
+    © Grade 12 Advanced Physics | INSPIRE EOT3 | Auto-Grading System | Mr. Mohammed Hesham
   </footer>
 
   <script>
@@ -738,8 +756,8 @@
         'd','b','a','b','a','b','a','d', // Part 6
         'd','d','b','a','a', // Part 7
         'b','a','c', // Part 8
-        'b','b','d', // Part 9 (New)
-        'b','c','a','b','d','b','d','b','b','c','d','d' // Part 10 (New)
+        'b','b','d', // Part 9
+        'b','c','a','b','d','b','d','b','b','c','d','d' // Part 10
       ];
 
       let topicScores = [0,0,0,0,0,0,0,0,0,0];
@@ -768,6 +786,8 @@
       }
 
       total = Math.round(total);
+      const successRate = Math.round((total / 100) * 100);
+      
       topicScores.forEach((score, idx) => {
         breakdown.push(`<div class="flex justify-between p-2 bg-white rounded"><span>${topicNames[idx]}</span><span class="font-bold text-indigo-700">${Math.round(score)}/10</span></div>`);
       });
@@ -776,6 +796,25 @@
       document.getElementById('res-date').textContent = date;
       document.getElementById('res-total').textContent = `${total} / 100`;
       document.getElementById('breakdown').innerHTML = breakdown.join('');
+      
+      // Update success badge
+      const badge = document.getElementById('success-badge');
+      const percent = document.getElementById('success-percent');
+      percent.textContent = `${successRate}%`;
+      
+      if(successRate >= 90) {
+        badge.textContent = 'Excellent';
+        badge.className = 'success-badge grade-excellent';
+      } else if(successRate >= 75) {
+        badge.textContent = 'Good';
+        badge.className = 'success-badge grade-good';
+      } else if(successRate >= 50) {
+        badge.textContent = 'Pass';
+        badge.className = 'success-badge grade-pass';
+      } else {
+        badge.textContent = 'Needs Improvement';
+        badge.className = 'success-badge grade-fail';
+      }
       
       const panel = document.getElementById('results-panel');
       panel.style.display = 'block';
@@ -793,11 +832,14 @@
       const name = document.getElementById('studentName').value || 'N/A';
       const date = document.querySelector('input[type="text"]').value || new Date().toLocaleDateString();
       const score = document.getElementById('res-total').textContent;
+      const successRate = document.getElementById('success-percent').textContent;
 
       let answersHTML = `<table style="border:1px solid #e5e7eb; border-collapse:collapse; width:100%; font-family:Arial; font-size:12px;">
         <tr style="background:#4F46E5; color:white;"><th style="border:1px solid #e5e7eb; padding:8px;">Q#</th><th style="border:1px solid #e5e7eb; padding:8px;">Topic</th><th style="border:1px solid #e5e7eb; padding:8px;">Selected</th><th style="border:1px solid #e5e7eb; padding:8px;">Status</th></tr>`;
       
       const topics = ["Blackbody","Blackbody","Blackbody","Photon","Photon","Photon","Photon","Photon","Photon","Photon","Energy","Energy","Energy","Energy","Energy","Energy","Energy","PE","PE","PE","PE","PE","PE","PE","Graph","Graph","Graph","Graph","Calc","Calc","Calc","WorkFunc","WorkFunc","WorkFunc","WorkFunc","WorkFunc","Graph","Graph","Graph","Graph","Graph","Compare","Compare","Compare","PhotoAdv","PhotoAdv","PhotoAdv","deBroglie","deBroglie","deBroglie","deBroglie","deBroglie","deBroglie","deBroglie","Heisenberg","deBroglie","deBroglie","deBroglie","deBroglie","Compton"];
+      
+      const correctAnswers = ['a','b','b','a','c','a','b','a','a','b','d','c','d','b','c','c','b','b','b','d','d','d','b','b','b','d','b','d','d','b','b','a','b','a','b','a','d','d','d','b','a','a','b','a','c','b','b','d','b','c','a','b','d','b','d','b','b','c','d','d'];
       
       for(let i=1; i<=61; i++) {
         const sel = document.querySelector(`input[name="q${i}"]:checked`);
@@ -811,6 +853,7 @@
         student_name: name,
         exam_date: date,
         total_score: score,
+        success_rate: successRate,
         answers_table: answersHTML
       };
 
@@ -818,7 +861,7 @@
         .then(() => {
           status.textContent = '✅ Sent successfully! Check your Gmail.';
           status.style.color = '#059669';
-          btn.textContent = '✓ Sent';
+          btn.textContent = '✓ Sent to Teacher';
         })
         .catch(err => {
           status.textContent = '❌ Failed. Check console or setup.';
